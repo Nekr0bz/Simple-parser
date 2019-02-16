@@ -1,17 +1,17 @@
 from django.test import TestCase
 from .factories import VacancyFactory
 
-from vacancy.models import VacancyModel
-
 
 class VacancyModelTest(TestCase):
     @classmethod
     def setUpTestData(cls):
-        VacancyFactory.create()
+        cls.vacancy = VacancyFactory.create()
 
     def test_str_is_name_(self):
-        vacancy = VacancyModel.objects.get(pk=1)
-        print(VacancyModel.objects.all())
-        self.assertEquals(vacancy.name, str(vacancy))
+        self.assertEquals(self.vacancy.name, str(self.vacancy))
+
+    def test_get_absolute_url(self):
+        vacancy_id = self.vacancy.id
+        self.assertEquals(self.vacancy.get_absolute_url(), '/vacancy/{}/'.format(vacancy_id))
 
 
