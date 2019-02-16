@@ -81,3 +81,24 @@ class DetailViewTest(TestCase):
         obj = resp.context['object']
         self.assertTrue(isinstance(obj, VacancyModel))
 
+
+class GenerateDataViewTest(TestCase):
+    @classmethod
+    def setUpTestData(cls):
+        VacancyFactory.create_batch(5)
+
+    def test_HTTP404_for_get_request(self):
+        resp = self.client.get(reverse('vacancy:generate'))
+        self.assertEqual(resp.status_code, 404)
+
+    def test_view_url_exists_at_desired_location(self):
+        resp = self.client.post('/generate/')
+        self.assertEqual(resp.status_code, 200)
+
+    def test_view_url_accessible_by_name(self):
+        resp = self.client.post(reverse('vacancy:generate'))
+        self.assertEqual(resp.status_code, 200)
+
+    def test_view_uses_correct_template(self):
+        resp = self.client.post(reverse('vacancy:generate'))
+        self.assertTemplateUsed(resp, 'preloader.html')
