@@ -3,6 +3,8 @@ billiard==3.5.0.5
 celery==4.2.1
 defusedxml==0.5.0
 Django==2.1.7
+factory-boy==2.11.1
+Faker==1.0.2
 freeze==1.0.10
 gcloud==0.18.3
 googleapis-common-protos==1.5.8
@@ -17,12 +19,14 @@ psycopg2-binary==2.7.7
 pyasn1==0.4.5
 pyasn1-modules==0.2.4
 pycurl==7.43.0.1
+python-dateutil==2.8.0
 pytils==0.3
 pytz==2018.9
 redis==3.1.0
 rsa==4.0
 selection==0.0.14
 six==1.12.0
+text-unidecode==1.2
 user-agent==0.1.9
 vine==1.2.0
 weblib==0.1.30
