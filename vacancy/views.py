@@ -4,7 +4,7 @@ from django.views.generic.list import ListView
 
 
 class IndexPageView(TemplateView):
-    pass
+    template_name = "index.html"
 
 
 class VacancyListView(ListView):

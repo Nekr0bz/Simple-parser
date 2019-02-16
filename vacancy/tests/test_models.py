@@ -11,6 +11,7 @@ class VacancyModelTest(TestCase):
 
     def test_str_is_name_(self):
         vacancy = VacancyModel.objects.get(pk=1)
+        print(VacancyModel.objects.all())
         self.assertEquals(vacancy.name, str(vacancy))
 
 
