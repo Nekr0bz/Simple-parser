@@ -1,0 +1,11 @@
+{% extends "index.html" %}
+
+{% block content %}
+  <h3>{{ object.name }}</h3>
+  <p><b>Short description: </b>{{ object.short_description }}</p>
+  <p><b>Description: </b>{{ object.description }}</p>
+  <p><b>Salary from: </b>{{ object.salary_from }}</p>
+  <p><b>Salary to: </b>{{ object.salary_to }}</p>
+  <p><b>Currency: </b>{{ object.currency }}</p>
+  <p><b>Link: </b><a href="{{ object.link }}">{{ object.link }}</a></p>
+{% endblock %}

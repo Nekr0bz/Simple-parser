@@ -15,5 +15,6 @@ class VacancyListView(ListView):
 
 
 class VacancyDetailView(DetailView):
-    pass
+    template_name = "detail.html"
+    model = VacancyModel
 
