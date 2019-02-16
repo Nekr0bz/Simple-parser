@@ -1,0 +1,13 @@
+{% extends "index.html" %}
+
+{% block content %}
+    <ul class="list-group">
+    {% for vacancy in object_list %}
+      <li class="list-group-item">
+          <h2><a href="">{{ vacancy.name }}</a></h2>
+      </li>
+    {% empty %}
+        <h2>Данные отсутствуют!</h2>
+    {% endfor %}
+    </ul>
+{% endblock %}
