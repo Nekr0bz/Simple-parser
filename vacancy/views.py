@@ -29,7 +29,7 @@ class GenerateDataView(TemplateView):
     def get(self, request, *args, **kwargs):
         if request.is_ajax():
             task = AsyncResult(self.request.session.get('task_uuid'))
-            return JsonResponse({'status': task.state})
+            return JsonResponse({'task_status': task.state})
         else:
             raise Http404
 

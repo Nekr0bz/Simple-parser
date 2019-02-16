@@ -17,10 +17,10 @@
                 url: "/generate/",
                 type: 'GET',
             }).done(function (msg) {
-                if ( msg['status'] === "PENDING"){
+                if ( msg['task_status'] === "PENDING"){
                     setTimeout(app.monitorStatusTask, 2600 );
                 }
-                else if ( msg['status'] === "SUCCESS"){
+                else if ( msg['task_status'] === "SUCCESS"){
                     window.location = "/vacancy/";
                 }
             })
