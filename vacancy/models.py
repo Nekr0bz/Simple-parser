@@ -16,6 +16,9 @@ class VacancyModel(models.Model):
         verbose_name = 'Вакансия'
         verbose_name_plural = 'Вакансии'
 
+    def get_absolute_url(self):
+        return reverse('vacancy:vacancy_detail', args=[self.id])
+
     def __str__(self):
         return self.name
 

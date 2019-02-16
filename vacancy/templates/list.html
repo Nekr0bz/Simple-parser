@@ -4,7 +4,7 @@
     <ul class="list-group">
     {% for vacancy in object_list %}
       <li class="list-group-item">
-          <h2><a href="">{{ vacancy.name }}</a></h2>
+          <h2><a href="{{ vacancy.get_absolute_url }}">{{ vacancy.name }}</a></h2>
       </li>
     {% empty %}
         <h2>Данные отсутствуют!</h2>
