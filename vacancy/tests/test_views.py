@@ -1,5 +1,6 @@
 from django.test import TestCase
 from django.urls import reverse
+import random
 
 from vacancy.models import VacancyModel
 from .factories import VacancyFactory
@@ -48,5 +49,35 @@ class ListViewTest(TestCase):
             self.assertTrue(isinstance(obj, VacancyModel))
 
 
+class DetailViewTest(TestCase):
+    @classmethod
+    def setUpTestData(cls):
+        cls.vacancy_id = VacancyFactory.create().id
 
+    def test_view_url_exists_at_desired_location(self):
+        resp = self.client.get('/vacancy/{}/'.format(self.vacancy_id))
+        self.assertEqual(resp.status_code, 200)
+
+    def test_view_url_accessible_by_name(self):
+        resp = self.client.get(reverse('vacancy:vacancy_detail', args=[self.vacancy_id]))
+        self.assertEqual(resp.status_code, 200)
+
+    def test_view_uses_correct_template(self):
+        resp = self.client.get(reverse('vacancy:vacancy_detail', args=[self.vacancy_id]))
+        self.assertTemplateUsed(resp, 'detail.html')
+
+    def test_HTTP404_for_invalid_args(self):
+        numbers = list(range(5))
+
+        if self.vacancy_id in numbers:
+            numbers.remove(self.vacancy_id)
+
+        invalid_id = random.choice(numbers)
+        resp = self.client.get(reverse('vacancy:vacancy_detail', args=[invalid_id]))
+        self.assertEqual(resp.status_code, 404)
+
+    def test_view_have_correct_type_context_object(self):
+        resp = self.client.get(reverse('vacancy:vacancy_detail', args=[self.vacancy_id]))
+        obj = resp.context['object']
+        self.assertTrue(isinstance(obj, VacancyModel))
 
